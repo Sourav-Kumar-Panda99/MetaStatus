@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100%;
+  color-scheme: light;
+}
+
+body {
+  background-color: transparent;
+  color: #f5f5f7;
+}
+
+/* Dark scrollbars so browser chrome matches the theme */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #3a3a3c;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #48484a;
+}
+html {
+  color-scheme: dark;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Soft glow focus ring, closer to iOS than a hard outline */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(24, 119, 242, 0.28);
+  border-radius: 8px;
+  transition: box-shadow 0.15s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* Apple-style spring entrance for modals/sheets */
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-backdrop-in {
+  animation: backdrop-in 0.2s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+.animate-sheet-in {
+  animation: sheet-in 0.32s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+/* Staggered list-item entrance, like a native table view populating */
+@keyframes item-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-item-in {
+  animation: item-in 0.4s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+/* Logo mark pop-in on auth screens */
+@keyframes logo-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-logo-pop {
+  animation: logo-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Small wiggle for the notification bell when it turns on */
+@keyframes bell-ring {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(-14deg);
+  }
+  40% {
+    transform: rotate(11deg);
+  }
+  60% {
+    transform: rotate(-7deg);
+  }
+  80% {
+    transform: rotate(4deg);
+  }
+}
+
+.animate-bell-ring {
+  animation: bell-ring 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Soft breathing glow on the "Needs attention" stat card when it's > 0,
+   drawing the eye without being obnoxious about it. */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(251, 113, 133, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(251, 113, 133, 0);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-backdrop-in,
+  .animate-sheet-in,
+  .animate-item-in,
+  .animate-logo-pop,
+  .animate-bell-ring,
+  .animate-pulse-glow {
+    animation: none;
+  }
+}
